@@ -119,9 +119,9 @@ func (self *Entity) WithProperties(properties Properties) *Entity {
 	return self
 }
 
-func (self *Entity) WithLinks(links ...*Link) *Entity {
+func (self *Entity) WithLinks(links Links) *Entity {
 	self = self.clone()
-	self.Links = Links(links)
+	self.Links = links
 
 	return self
 }
@@ -248,4 +248,24 @@ func NewLink(rel Rel, href string) *Link {
 		Rel:  rel,
 		Href: href,
 	}
+}
+
+func (self *Link) WithTitle(title string) *Link {
+	self = self.clone()
+	self.Title = title
+
+	return self
+}
+
+func (self *Link) WithType(typ string) *Link {
+	self = self.clone()
+	self.Type = typ
+
+	return self
+}
+
+func (self *Link) clone() *Link {
+	x := *self
+
+	return &x
 }

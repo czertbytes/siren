@@ -37,7 +37,10 @@ func (self Order) MarshalSirenJSON() ([]byte, error) {
 		NewEntity(NewRel("http://x.io/rels/customer")).
 			WithClass(NewClass("info", "customer")).
 			WithProperties(customerProperties).
-			WithLinks(NewLink(NewRel("self"), "http://api.x.io/customers/pj123")),
+			WithLinks(
+			Links{
+				NewLink(NewRel("self"), "http://api.x.io/customers/pj123"),
+			}),
 		NewLinkEntity(NewRel("http://x.io/rels/order-items"), "http://api.x.io/orders/42/items").
 			WithClass(NewClass("items", "collection")),
 	}
